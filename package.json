@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongolab-data-api": "^1.1.6"
+    "mongolab-data-api": "^1.1.6",
+    "node-cmd": "^1.2.0"
   }
 }
