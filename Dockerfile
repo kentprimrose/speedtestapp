@@ -9,5 +9,4 @@ ADD . .
 # If you need npm, don't use a base tag
 RUN npm install
 
-EXPOSE 3000
-CMD ["node", "index.js"]
+CMD ["npm", "start"]
