@@ -19,4 +19,4 @@ let getSpeed = () => {
 
 getSpeed();
 
-setInterval(getSpeed, 30000);
+setInterval(getSpeed, 300000);
