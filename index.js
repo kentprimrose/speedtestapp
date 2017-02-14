@@ -30,10 +30,13 @@ app.get('/health', (req, res) => {
       download.push(result.download);
     });
 
+    var max = Math.max.apply(null, download);
+    var min = Math.min.apply(null, download);
+
     var sum = download.reduce((a, b) => a + b);
     var avg = sum / download.length;
 
-    res.send('the average download speed has been: ' + avg.toFixed(2) + ' mbps.');
+    res.send('the average download speed has been: ' + avg.toFixed(2) + ' mbps, the max was: ' + max + ' and the min was: ' + min + '.');
   });
 });
 
