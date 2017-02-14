@@ -6,11 +6,11 @@ var options = {
   collectionName: 'results'
 };
 
-let getSpeed = function() {
-  cmd.get('speed-test --json', function(data) {
+let getSpeed = () => {
+  cmd.get('speed-test --json', (data) => {
     options.documents = JSON.parse(data);
 
-    mLab.insertDocuments(options, function(err, data) {
+    mLab.insertDocuments(options, (err, data) => {
       if (err) throw err;
       console.log(data);
     });
