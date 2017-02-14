@@ -25,7 +25,15 @@ setInterval(getSpeed, 300000);
 
 app.get('/health', (req, res) => {
   mLab.listDocuments(defaultOptions, (err, data) => {
-    res.send(data);
+    var download = [];
+    data.forEach(result => {
+      download.push(result.download);
+    });
+
+    var sum = download.reduce((a, b) => a + b);
+    var avg = sum / download.length;
+
+    res.send('the average download speed has been: ' + avg + ' mbps.');
   });
 });
 
