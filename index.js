@@ -1,14 +1,16 @@
 var cmd = require('node-cmd');
 var mLab = require('mongolab-data-api')('TKVMJQX_MG2QTInjfPW6PJNw0oLuSbuP');
+var express = require('express');
+var app = express();
 
-var options = {
+var defaultOptions = {
   database: 'time-warner-speeds',
   collectionName: 'results'
 };
 
 let getSpeed = () => {
   cmd.get('speed-test --json', (data) => {
-    options.documents = JSON.parse(data);
+    var options = Object.assign({}, defaultOptions, { documents: JSON.parse(data) });
 
     mLab.insertDocuments(options, (err, data) => {
       if (err) throw err;
@@ -20,3 +22,11 @@ let getSpeed = () => {
 getSpeed();
 
 setInterval(getSpeed, 300000);
+
+app.get('/health', (req, res) => {
+  mLab.listDocuments(defaultOptions, (err, data) => {
+    res.send(data);
+  });
+});
+
+app.listen(3001, () => console.log('app listening on port 3001'));

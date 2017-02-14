@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.14.1",
     "mongolab-data-api": "^1.1.6",
     "node-cmd": "^1.2.0",
     "speed-test": "^1.7.1"
