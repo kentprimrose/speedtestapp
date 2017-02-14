@@ -33,7 +33,7 @@ app.get('/health', (req, res) => {
     var sum = download.reduce((a, b) => a + b);
     var avg = sum / download.length;
 
-    res.send('the average download speed has been: ' + avg + ' mbps.');
+    res.send('the average download speed has been: ' + avg.toFixed(2) + ' mbps.');
   });
 });
 
