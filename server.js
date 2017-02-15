@@ -1,3 +1,7 @@
+const PORT = process.env.PORT || 3000;
+const INTERVAL = process.env.INTERVAL || 300000;
+const MAX_TIME = process.env.MAX_TIME || 5000;
+
 const util = require('util');
 const speedtest = require('speedtest-net');
 const storage = require('./storage_memory');
@@ -7,7 +11,7 @@ const app = express();
 let getSpeed = () => {
 
   let test = speedtest({
-    maxTime: 5000
+    maxTime: MAX_TIME
   });
 
   test.on('data', data => {
@@ -26,7 +30,7 @@ let getSpeed = () => {
 };
 
 getSpeed();
-setInterval(getSpeed, 30000);
+setInterval(getSpeed, INTERVAL);
 
 app.get('/health', (req, res) => {
   let avgDown = storage.avg('download').toFixed(2);
@@ -37,4 +41,4 @@ app.get('/health', (req, res) => {
 		       avgDown, maxDown, minDown));
 });
 
-app.listen(3000, () => console.log('app listening on port 3000'));
+app.listen(PORT, () => console.log('Listening on port %s', PORT));
