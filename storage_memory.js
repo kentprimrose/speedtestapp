@@ -1,24 +1,36 @@
-const Storage = function() {};
+// TODO: naively assumes all data items are numbers
 
 storage = [];
 
-Storage.prototype.store = function(data) {
-  storage.push(data);
-};
+module.exports = {
 
-Storage.prototype.avg = function(val) {
-  // TODO: naively assumes all data items are numbers
-  return storage.reduce((acc, x) => acc+x[val], 0) / storage.length;
-};
+  store: (data) => {
+    storage.push(data);
+  },
 
-Storage.prototype.max =function(val) {
-  // TODO: naively assumes all data items are numbers
-  return storage.reduce((max, x) => x[val] > max ? x[val] : max, 0);
-};
+  avg: (val, callback) => {
+    let vals = storage.filter(item => item.hasOwnProperty(val));
+    let result = vals.reduce((acc, x) => acc + (x[val] || 0), 0) / vals.length;
+    if (callback) {
+      callback(result);
+    } 
+    return result;
+  },
 
-Storage.prototype.min =function(val) {
-  // TODO: naively assumes all data items are numbers
-  return storage.reduce((min, x) => x[val] < min ? x[val] : min, 999);
-};
+  max: (val, callback) => {
+    let result = storage.reduce((max, x) => x[val] > max ? x[val] : max, 0);
+    if (callback) {
+      callback(result);
+    } 
+    return result;
+  },
 
-module.exports = new Storage();
+  min: (val, callback) => {
+    let result = storage.reduce((min, x) => x[val] < min ? x[val] : min, 999);
+    if (callback) {
+      callback(result);
+    } 
+    return result;
+  }
+
+};
