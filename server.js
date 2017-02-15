@@ -1,10 +1,11 @@
 const PORT = process.env.PORT || 3000;
 const INTERVAL = process.env.INTERVAL || 300000;
 const MAX_TIME = process.env.MAX_TIME || 5000;
+const STORAGE = process.env.STORAGE || './storage_memory';
 
 const util = require('util');
 const speedtest = require('speedtest-net');
-const storage = require('./storage_memory');
+const storage = require(STORAGE);
 const express = require('express');
 const app = express();
 
