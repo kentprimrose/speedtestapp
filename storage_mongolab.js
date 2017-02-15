@@ -1,7 +1,6 @@
-var cmd = require('node-cmd');
-var mLab = require('mongolab-data-api')('TKVMJQX_MG2QTInjfPW6PJNw0oLuSbuP');
-var express = require('express');
-var app = express();
+const API_KEY = process.env.API_KEY || 'TKVMJQX_MG2QTInjfPW6PJNw0oLuSbuP';
+
+var mLab = require('mongolab-data-api')(API_KEY);
 
 var defaultOptions = {
   database: 'time-warner-speeds',
