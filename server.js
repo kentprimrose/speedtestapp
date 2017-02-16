@@ -10,7 +10,8 @@ const express = require('express');
 const app = express();
 
 let getSpeed = () => {
-
+	console.log('Testing...');
+	
   let test = speedtest({
     maxTime: MAX_TIME
   });
@@ -29,8 +30,6 @@ let getSpeed = () => {
   });
 
 };
-
-getSpeed();
 setInterval(getSpeed, INTERVAL);
 
 app.get('/health', (req, res) => {
