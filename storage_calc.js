@@ -1,4 +1,4 @@
-console.log('storage_calc');
+console.log('Using storage_calc');
 
 let items = {};
 

@@ -1,4 +1,4 @@
-console.log('storage_memory');
+console.log('Using storage_memory');
 
 storage = [];
 

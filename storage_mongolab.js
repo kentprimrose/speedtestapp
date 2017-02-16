@@ -1,4 +1,4 @@
-console.log('storage_mongolab');
+console.log('Using storage_mongolab');
 
 const API_KEY = process.env.API_KEY || 'TKVMJQX_MG2QTInjfPW6PJNw0oLuSbuP';
 const mLab = require('mongolab-data-api')(API_KEY);
