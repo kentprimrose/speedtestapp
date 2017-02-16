@@ -1,36 +1,46 @@
-// TODO: naively assumes all data items are numbers
+console.log('storage_memory');
 
 storage = [];
 
+let avg = (label, callback) => {
+	let items = storage.filter(item => item.hasOwnProperty(label));
+	let result = items.reduce((acc, x) => acc + (x[label] || 0), 0) / items.length;
+	if (callback) {
+		callback(result);
+	} 
+	return result;
+};
+
+let max = (label, callback) => {
+	let result = storage.reduce((max, x) => x[label] > max ? x[label] : max, 0);
+	if (callback) {
+		callback(result);
+	} 
+	return result;
+};
+
+let min = (label, callback) => {
+	let result = storage.reduce((min, x) => x[label] < min ? x[label] : min, 999);
+	if (callback) {
+		callback(result);
+	} 
+	return result;
+};
+
 module.exports = {
+	store: (data) => {
+		storage.push(data);
+	},
 
-  store: (data) => {
-    storage.push(data);
-  },
-
-  avg: (val, callback) => {
-    let vals = storage.filter(item => item.hasOwnProperty(val));
-    let result = vals.reduce((acc, x) => acc + (x[val] || 0), 0) / vals.length;
-    if (callback) {
-      callback(result);
-    } 
-    return result;
-  },
-
-  max: (val, callback) => {
-    let result = storage.reduce((max, x) => x[val] > max ? x[val] : max, 0);
-    if (callback) {
-      callback(result);
-    } 
-    return result;
-  },
-
-  min: (val, callback) => {
-    let result = storage.reduce((min, x) => x[val] < min ? x[val] : min, 999);
-    if (callback) {
-      callback(result);
-    } 
-    return result;
-  }
-
+	vals: (label, callback) => {
+		let result = {
+			avg: avg(label),
+			max: max(label),
+			min: min(label)
+		};
+		if (callback) {
+			callback(result);
+		} 
+		return result;
+	}
 };

@@ -1,7 +1,7 @@
 const assert = require('assert');
-const storage = require('../storage_memory');
+const storage = require('../storage_calc');
 
-describe('In Memory Storage', function() {
+describe('Calc Storage', function() {
   it('should directly return set of results', function() {
     storage.store({'d':1});
     storage.store({'d':2});

@@ -30,15 +30,17 @@ let getSpeed = () => {
   });
 
 };
+
+getSpeed();
 setInterval(getSpeed, INTERVAL);
 
 app.get('/health', (req, res) => {
-  let avgDown = storage.avg('download').toFixed(2);
-  let maxDown = storage.max('download').toFixed(2);
-  let minDown = storage.min('download').toFixed(2);
-
-  res.send(util.format('avg down: %s, max down: %s, min down: %s',
-		       avgDown, maxDown, minDown));
+	storage.vals('download', function(results) {
+		res.send(util.format('avg down: %s, max down: %s, min down: %s',
+												 results.avg.toFixed(2),
+												 results.max.toFixed(2),
+												 results.min.toFixed(2)));
+	});
 });
 
 app.listen(PORT, () => console.log('Listening on port %s', PORT));
