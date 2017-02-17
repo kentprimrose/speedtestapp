@@ -5,7 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha tests -w"
+    "start:local": "STORAGE='./storage_calc' npm start",
+
+    "test": "mocha tests",
+		"test:watch": "npm run test -- --watch"
   },
   "author": "",
   "license": "ISC",
