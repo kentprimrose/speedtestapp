@@ -1,7 +1,7 @@
-const PORT = process.env.PORT || 3000;
-const INTERVAL = process.env.INTERVAL || 30000;
-const MAX_TIME = process.env.MAX_TIME || 5000;
-const STORAGE = process.env.STORAGE || './storage_memory';
+const PORT = process.env.STA_PORT || 3000;
+const INTERVAL = process.env.STA_INTERVAL || 30000;
+const MAX_TIME = process.env.STA_MAX_TIME || 5000;
+const STORAGE = process.env.STA_STORAGE || './storage_calc';
 
 const util = require('util');
 const speedtest = require('speedtest-net');
@@ -12,22 +12,22 @@ const app = express();
 let getSpeed = () => {
 	console.log('Testing...');
 	
-  let test = speedtest({
-    maxTime: MAX_TIME
-  });
+	let test = speedtest({
+		maxTime: MAX_TIME
+	});
 
-  test.on('data', data => {
-    console.log('download: %s', data.speeds.download);
-    console.log('upload: %s', data.speeds.upload);
-    storage.store({
-      'download': data.speeds.download,
-      'upload': data.speeds.upload
-    });
-  });
+	test.on('data', data => {
+		console.log('download: %s', data.speeds.download);
+		console.log('upload: %s', data.speeds.upload);
+		storage.store({
+			'download': data.speeds.download,
+			'upload': data.speeds.upload
+		});
+	});
 
-  test.on('error', err => {
-    console.log('error: %s', err);
-  });
+	test.on('error', err => {
+		console.log('error: %s', err);
+	});
 
 };
 

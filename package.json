@@ -8,6 +8,7 @@
     "start:local": "STORAGE='./storage_calc' npm start",
 
     "test": "mocha tests",
+    "test:debug": "mocha debug tests",
 		"test:watch": "npm run test -- --watch"
   },
   "author": "",
