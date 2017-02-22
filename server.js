@@ -1,7 +1,7 @@
 const PORT = process.env.STA_PORT || 3000;
 const INTERVAL = process.env.STA_INTERVAL || 30000;
 const MAX_TIME = process.env.STA_MAX_TIME || 5000;
-const STORAGE = process.env.STA_STORAGE || './storage_calc';
+const STORAGE = './storage/storage_' + (process.env.STA_STORAGE || 'calc');
 
 const util = require('util');
 const speedtest = require('speedtest-net');
